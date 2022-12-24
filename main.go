@@ -2,16 +2,22 @@ package main
 
 import (
 	"fmt"
+	"main/db"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 func main() {
-	fmt.Println("Helo")
+	err := godotenv.Load()
+	if err != nil {
+		fmt.Println("Error loading dotenv")
+	}
+	conn, err := db.OpenConnection()
+	db.Migrate(conn)
 	router := gin.Default()
 	router.GET("/hello", hello)
-	fmt.Println("Working")
 	router.Run()
 }
 
