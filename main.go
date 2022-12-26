@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"main/db"
-	"net/http"
+	"main/routes"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -15,12 +15,11 @@ func main() {
 		fmt.Println("Error loading dotenv")
 	}
 	conn, err := db.OpenConnection()
+	if err != nil {
+		fmt.Println("Error connecting to database")
+	}
 	db.Migrate(conn)
-	router := gin.Default()
-	router.GET("/hello", hello)
-	router.Run()
-}
-
-func hello(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{"response": "Hello world"})
+	app := gin.Default()
+	routes.Start(app)
+	app.Run()
 }
