@@ -16,5 +16,5 @@ type UserDB struct {
 	InGameName string    `json:"inGameName"`
 	Password   string    `json:"password"`
 	Email      string    `json:"email"`
-	CreatedAt  time.Time `json:"createdcreatedAt"`
+	CreatedAt  time.Time `json:"createdAt"`
 }
