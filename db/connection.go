@@ -7,7 +7,7 @@ import (
 	_ "github.com/lib/pq"
 )
 
-var conn *sql.DB
+var Conn *sql.DB
 
 func OpenConnection() (*sql.DB, error) {
 	dbname := os.Getenv("DB_NAME")
@@ -19,13 +19,10 @@ func OpenConnection() (*sql.DB, error) {
 	if err != nil {
 		panic(err)
 	}
-	err = conn.Ping()
+	Conn = conn
+	err = Conn.Ping()
 	if err != nil {
 		panic(err)
 	}
-	return conn, err
-}
-
-func GetConnection() *sql.DB {
-	return conn
+	return Conn, err
 }
