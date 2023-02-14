@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"main/db"
+	"main/middlewares"
 	"main/routes"
 
 	"github.com/gin-gonic/gin"
@@ -20,6 +21,7 @@ func main() {
 	}
 	db.Migrate(conn)
 	app := gin.Default()
+	app.Use(gin.CustomRecovery(middlewares.ErrorHandler))
 	routes.Start(app)
 	app.Run()
 }

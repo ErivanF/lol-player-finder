@@ -16,6 +16,9 @@ func Create(c *gin.Context) {
 	if err != nil {
 		c.IndentedJSON(http.StatusBadRequest, gin.H{"err": err.Error()})
 	}
+	if new_user.Name == "" {
+		panic("Name required")
+	}
 	hashed_password, _ := bcrypt.GenerateFromPassword([]byte(new_user.Password), 8)
 	new_user.Password = string(hashed_password)
 	stmt, err := db.Conn.Prepare(`
@@ -42,6 +45,8 @@ func Create(c *gin.Context) {
 		&created_user.CreatedAt); err != nil {
 		fmt.Println("Erro: ", err)
 	}
+
 	created_user.Password = ""
 	c.IndentedJSON(http.StatusOK, created_user)
+	c.IndentedJSON(http.StatusOK, new_user)
 }
