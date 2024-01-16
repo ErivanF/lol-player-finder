@@ -14,38 +14,38 @@ func WriteJson(w http.ResponseWriter, status int, r any) error {
 	return json.NewEncoder(w).Encode(r)
 }
 
-type APIFunc func(http.ResponseWriter, *http.Request) error
+type apiFunc func(http.ResponseWriter, *http.Request) error
 
-type APIError struct {
+type apiError struct {
 	Error string
 }
 
-func makeHTTPHandlerFunc(f APIFunc) http.HandlerFunc {
+func makeHTTPHandlerFunc(f apiFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if err := f(w, r); err != nil {
-			WriteJson(w, http.StatusBadRequest, APIError{Error: err.Error()})
+			WriteJson(w, http.StatusBadRequest, apiError{Error: err.Error()})
 		}
 	}
 }
 
-type APIServer struct {
+type apiServer struct {
 	listenAdress string
 }
 
-func NewApiServer(listenAdress string) *APIServer {
-	return &APIServer{
+func NewApiServer(listenAdress string) *apiServer {
+	return &apiServer{
 		listenAdress: listenAdress,
 	}
 }
 
-func (s *APIServer) Run() {
+func (s *apiServer) Run() {
 	router := mux.NewRouter()
 	router.HandleFunc("/account", makeHTTPHandlerFunc(s.handleAccount))
 	log.Println("Server running on port: ", s.listenAdress)
 	http.ListenAndServe(s.listenAdress, router)
 }
 
-func (s *APIServer) handleAccount(w http.ResponseWriter, r *http.Request) error {
+func (s *apiServer) handleAccount(w http.ResponseWriter, r *http.Request) error {
 	if r.Method == "GET" {
 		return s.handleGetAccount(w, r)
 	}
@@ -58,14 +58,14 @@ func (s *APIServer) handleAccount(w http.ResponseWriter, r *http.Request) error 
 	return nil
 }
 
-func (s *APIServer) handleGetAccount(w http.ResponseWriter, r *http.Request) error {
+func (s *apiServer) handleGetAccount(w http.ResponseWriter, r *http.Request) error {
 	return nil
 }
 
-func (s *APIServer) handleCreateAccount(w http.ResponseWriter, r *http.Request) error {
+func (s *apiServer) handleCreateAccount(w http.ResponseWriter, r *http.Request) error {
 	return nil
 }
 
-func (s *APIServer) handleDeleteAccount(w http.ResponseWriter, r *http.Request) error {
+func (s *apiServer) handleDeleteAccount(w http.ResponseWriter, r *http.Request) error {
 	return nil
 }
