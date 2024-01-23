@@ -1,0 +1,13 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "APi to find League of Legends Players",
+        "title": "Lol Player Finder",
+        "contact": {
+            "name": "Erivan Ferreira",
+            "email": "erivan.c39@gmail.com"
+        },
+        "version": "0.1"
+    },
+    "paths": {}
+}

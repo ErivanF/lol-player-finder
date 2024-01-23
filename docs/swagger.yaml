@@ -1,0 +1,9 @@
+info:
+  contact:
+    email: erivan.c39@gmail.com
+    name: Erivan Ferreira
+  description: APi to find League of Legends Players
+  title: Lol Player Finder
+  version: "0.1"
+paths: {}
+swagger: "2.0"

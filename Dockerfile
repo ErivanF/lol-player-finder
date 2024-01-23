@@ -1,12 +1,15 @@
 FROM golang:1.21
 
-ENV GO111MODULE=on
-ENV GOFLAGS=-mod=vendor
+WORKDIR /app
 
-ENV APP_HOME /go/src/lol-player-finder
-RUN mkdir -p "$APP_HOME"
+COPY go.mod go.sum ./
 
-WORKDIR "$APP_HOME"
-EXPOSE 3000
+RUN go mod download
 
-CMD [ "go", "run"]
+COPY *.go ./
+
+RUN CGO_ENABLED=0 GOOS=linux go build -o /docker-gs-ping
+
+CMD ["/docker-gs-ping"]
+
+EXPOSE 5000
