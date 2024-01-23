@@ -10,7 +10,7 @@ import (
 
 // @Title 			Lol Player Finder
 // @Version 		0.1
-// @description 	API to find League of Legends Players
+// @description 	API to find League of Legends Players according to their roles and championms
 
 // @contact.name 	Erivan Ferreira
 // @contact.email 	erivan.c39@gmail.com
