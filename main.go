@@ -7,6 +7,7 @@ import (
 
 	_ "lol-player-finder/docs"
 	"lol-player-finder/middlewares"
+	"lol-player-finder/routes"
 )
 
 // @Title 			Lol Player Finder
@@ -22,9 +23,10 @@ func main() {
 	router.Use(middlewares.ErrorHandler())
 	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
-			"messege": "pong",
+			"messege": "pang",
 		})
 	})
+	routes.AddUserRoutes(router)
 
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
