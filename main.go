@@ -6,6 +6,7 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 
 	_ "lol-player-finder/docs"
+	"lol-player-finder/middlewares"
 )
 
 // @Title 			Lol Player Finder
@@ -18,6 +19,7 @@ func main() {
 
 	router := gin.New()
 	router.Use(gin.Logger())
+	router.Use(middlewares.ErrorHandler())
 	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"messege": "pong",
