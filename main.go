@@ -23,7 +23,7 @@ func main() {
 	router.Use(middlewares.ErrorHandler())
 	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
-			"messege": "pang",
+			"messege": "pong",
 		})
 	})
 	routes.AddUserRoutes(router)
