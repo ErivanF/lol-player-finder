@@ -9,4 +9,5 @@ import (
 func AddUserRoutes(rg *gin.Engine) {
 	users := rg.Group("/user")
 	users.POST("", userController.Create)
+	users.GET("", userController.GetAll)
 }

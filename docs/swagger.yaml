@@ -1,9 +1,91 @@
+definitions:
+  error.AppError:
+    properties:
+      message:
+        type: string
+      statusCode:
+        type: integer
+    type: object
+  types.User:
+    properties:
+      createdAt:
+        type: string
+      email:
+        type: string
+      gameName:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      updatedAt:
+        type: string
+    type: object
 info:
   contact:
     email: erivan.c39@gmail.com
     name: Erivan Ferreira
-  description: APi to find League of Legends Players
+  description: API to find League of Legends Players according to their roles and
+    championms
   title: Lol Player Finder
   version: "0.1"
-paths: {}
+paths:
+  /user:
+    get:
+      consumes:
+      - application/json
+      description: Get all accounts
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/types.User'
+      summary: Get accounts
+    post:
+      consumes:
+      - application/json
+      description: Create a new account
+      parameters:
+      - description: Your name
+        in: body
+        name: name
+        required: true
+        schema:
+          type: string
+      - description: Your email
+        in: body
+        name: email
+        required: true
+        schema:
+          type: string
+      - description: Your password
+        in: body
+        name: password
+        required: true
+        schema:
+          type: string
+      - description: In game name
+        in: body
+        name: gameName
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/types.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error.AppError'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/error.AppError'
+      summary: Create account
 swagger: "2.0"
