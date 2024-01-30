@@ -8,7 +8,6 @@ import (
 
 // @Summary Get accounts
 // @Description Get all accounts
-// @Accept json
 // @Produce json
 // @Success 200 {object} []types.User
 // @Router /user [get]

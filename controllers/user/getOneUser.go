@@ -9,6 +9,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @Summary Get account
+// @Description Get one account
+// @Produce json
+// @Success 200 {object} types.User
+// @Router /user/{id} [get]
 func GetUser(c *gin.Context) {
 	fmt.Println("Entered route")
 	id, err := strconv.ParseInt(c.Param("id"), 10, 0)

@@ -32,8 +32,6 @@ info:
 paths:
   /user:
     get:
-      consumes:
-      - application/json
       description: Get all accounts
       produces:
       - application/json
@@ -90,4 +88,15 @@ paths:
           schema:
             $ref: '#/definitions/error.AppError'
       summary: Create account
+  /user/{id}:
+    get:
+      description: Get one account
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.User'
+      summary: Get account
 swagger: "2.0"

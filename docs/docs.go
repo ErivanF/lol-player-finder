@@ -21,9 +21,6 @@ const docTemplate = `{
         "/user": {
             "get": {
                 "description": "Get all accounts",
-                "consumes": [
-                    "application/json"
-                ],
                 "produces": [
                     "application/json"
                 ],
@@ -104,6 +101,23 @@ const docTemplate = `{
                         "description": "Conflict",
                         "schema": {
                             "$ref": "#/definitions/error.AppError"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/{id}": {
+            "get": {
+                "description": "Get one account",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get account",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/types.User"
                         }
                     }
                 }
