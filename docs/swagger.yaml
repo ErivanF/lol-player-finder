@@ -38,10 +38,12 @@ paths:
       produces:
       - application/json
       responses:
-        "201":
-          description: Created
+        "200":
+          description: OK
           schema:
-            $ref: '#/definitions/types.User'
+            items:
+              $ref: '#/definitions/types.User'
+            type: array
       summary: Get accounts
     post:
       consumes:

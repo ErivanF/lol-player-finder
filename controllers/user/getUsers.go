@@ -10,7 +10,7 @@ import (
 // @Description Get all accounts
 // @Accept json
 // @Produce json
-// @Success 201 {object} types.User
+// @Success 200 {object} []types.User
 // @Router /user [get]
 func GetAll(c *gin.Context) {
 	users := userServices.GetUsersService()

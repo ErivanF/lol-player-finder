@@ -38,6 +38,6 @@ func MigrateUp() {
 	m.Up()
 }
 
-func GedDb() *sql.DB {
+func GetDb() *sql.DB {
 	return Conn
 }

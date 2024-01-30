@@ -7,7 +7,7 @@ import (
 )
 
 func CreateUserService(user types.UserCreate) types.User {
-	conn := database.GedDb()
+	conn := database.GetDb()
 	query := `	INSERT INTO users 
 				(name, email, password, gameName)
 				VALUES ($1, $2, $3, $4)

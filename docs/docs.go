@@ -29,10 +29,13 @@ const docTemplate = `{
                 ],
                 "summary": "Get accounts",
                 "responses": {
-                    "201": {
-                        "description": "Created",
+                    "200": {
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.User"
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/types.User"
+                            }
                         }
                     }
                 }

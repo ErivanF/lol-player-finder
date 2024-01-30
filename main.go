@@ -1,6 +1,8 @@
 package main
 
 import (
+	"os"
+
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	swaggerFiles "github.com/swaggo/files"
@@ -27,5 +29,6 @@ func main() {
 	database.MigrateUp()
 	routes.AddUserRoutes(router)
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
-	router.Run(":5000")
+	port := os.Getenv("PORT")
+	router.Run(":" + port)
 }
