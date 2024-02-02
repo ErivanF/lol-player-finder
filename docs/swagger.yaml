@@ -1,5 +1,5 @@
 definitions:
-  error.AppError:
+  appError.AppError:
     properties:
       message:
         type: string
@@ -82,15 +82,21 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/error.AppError'
+            $ref: '#/definitions/appError.AppError'
         "409":
           description: Conflict
           schema:
-            $ref: '#/definitions/error.AppError'
+            $ref: '#/definitions/appError.AppError'
       summary: Create account
   /user/{id}:
     get:
       description: Get one account
+      parameters:
+      - description: Your email
+        in: path
+        name: id
+        required: true
+        type: string
       produces:
       - application/json
       responses:

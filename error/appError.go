@@ -1,4 +1,4 @@
-package error
+package appError
 
 import "fmt"
 
@@ -16,6 +16,9 @@ func BadRequestError(m string) error {
 }
 func ConflictError(m string) error {
 	return newAppError(409, m)
+}
+func InternalServerError(m string) error {
+	return newAppError(500, m)
 }
 
 func newAppError(statusCode int, message string) AppError {

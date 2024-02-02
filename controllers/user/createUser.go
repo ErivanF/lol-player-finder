@@ -1,8 +1,7 @@
 package userController
 
 import (
-	"lol-player-finder/error"
-
+	appError "lol-player-finder/error"
 	userServices "lol-player-finder/services/user"
 	types "lol-player-finder/types"
 
@@ -18,32 +17,36 @@ import (
 // @Param password body string true "Your password"
 // @Param gameName body string true "In game name"
 // @Success 201 {object} types.User
-// @Failure 400 {object} error.AppError
-// @Failure 409 {object} error.AppError
+// @Failure 400 {object} appError.AppError
+// @Failure 409 {object} appError.AppError
 // @Router /user [post]
 func Create(c *gin.Context) {
 	var body types.UserCreate
 	c.Bind(&body)
 	if body.Name == "" {
-		c.Error(error.BadRequestError("missing name"))
+		c.Error(appError.BadRequestError("missing name"))
 		return
 	}
 	if body.Email == "" {
-		c.Error(error.BadRequestError("missing email"))
+		c.Error(appError.BadRequestError("missing email"))
 		return
 	}
 	if !userServices.IsEmailAvailableService(body.Email) {
-		c.Error(error.ConflictError("email is not available"))
+		c.Error(appError.ConflictError("email is not available"))
 		return
 	}
 	if body.Password == "" {
-		c.Error(error.BadRequestError("missing password"))
+		c.Error(appError.BadRequestError("missing password"))
 		return
 	}
 	if body.GameName == "" {
-		c.Error(error.BadRequestError("missing gameName"))
+		c.Error(appError.BadRequestError("missing gameName"))
 		return
 	}
-	newUser := userServices.CreateUserService(body)
+	newUser, err := userServices.CreateUserService(body)
+	if err != nil {
+		c.Error(err)
+		return
+	}
 	c.JSON(201, newUser)
 }

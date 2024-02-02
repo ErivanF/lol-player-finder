@@ -11,4 +11,5 @@ func AddUserRoutes(rg *gin.Engine) {
 	users.POST("", userController.Create)
 	users.GET("", userController.GetAll)
 	users.GET("/:id", userController.GetUser)
+	users.PATCH("/:id", userController.Update)
 }

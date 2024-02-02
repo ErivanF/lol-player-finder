@@ -18,3 +18,8 @@ type User struct {
 	CreatedAt time.Time `json:"createdAt" sql:"created_at" `
 	UpdatedAt time.Time `json:"updatedAt" sql:"updated_at" `
 }
+type UserChanges struct {
+	Name     string `json:"name" sql:"name"`
+	Password string `json:"password" sql:"password" `
+	GameName string `json:"gameName" sql:"gam_name" `
+}

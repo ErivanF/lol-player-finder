@@ -94,13 +94,13 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/error.AppError"
+                            "$ref": "#/definitions/appError.AppError"
                         }
                     },
                     "409": {
                         "description": "Conflict",
                         "schema": {
-                            "$ref": "#/definitions/error.AppError"
+                            "$ref": "#/definitions/appError.AppError"
                         }
                     }
                 }
@@ -113,6 +113,15 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "summary": "Get account",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Your email",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -125,7 +134,7 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "error.AppError": {
+        "appError.AppError": {
             "type": "object",
             "properties": {
                 "message": {

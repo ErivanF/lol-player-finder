@@ -9,7 +9,7 @@ import (
 func GetUsersService() []types.User {
 	var users []types.User
 	conn := database.GetDb()
-	query := `SELECT id, name, email, gameName, created_at, updated_at FROM users`
+	query := `SELECT id, name, email, game_name, created_at, updated_at FROM users`
 	rows, err := conn.Query(query)
 	if err != nil {
 		fmt.Println(err.Error())

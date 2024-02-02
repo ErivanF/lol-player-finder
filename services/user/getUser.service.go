@@ -6,10 +6,10 @@ import (
 	"lol-player-finder/types"
 )
 
-func GetUserService(id int64) types.User {
+func GetUserService(id string) types.User {
 	query := `
 				SELECT 
-				id, name, email, gameName, created_at, updated_at
+				id, name, email, game_name, created_at, updated_at
 				FROM users
 				where id = $1
 	`
