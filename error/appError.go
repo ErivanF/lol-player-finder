@@ -14,6 +14,9 @@ func (e AppError) Error() string {
 func BadRequestError(m string) error {
 	return newAppError(400, m)
 }
+func NotFoundError(m string) error {
+	return newAppError(404, m)
+}
 func ConflictError(m string) error {
 	return newAppError(409, m)
 }

@@ -1,17 +1,18 @@
 package userController
 
 import (
+	appError "lol-player-finder/error"
 	userServices "lol-player-finder/services/user"
 
 	"github.com/gin-gonic/gin"
 )
 
 func Delete(c *gin.Context) {
-	id := c.Param(":id")
+	id := c.Param("id")
 	deleted := userServices.DeleteUserService(id)
 	if deleted {
-		c.JSON(202, nil)
+		c.JSON(204, nil)
 	} else {
-		c.JSON(404, nil)
+		c.Error(appError.NotFoundError("user not found"))
 	}
 }
