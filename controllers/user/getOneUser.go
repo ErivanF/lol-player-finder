@@ -8,7 +8,7 @@ import (
 
 // @Summary Get account
 // @Description Get one account
-// @Param id path string true "Your email"
+// @Param id path string true "Account ID"
 // @Produce json
 // @Success 200 {object} types.User
 // @Router /user/{id} [get]

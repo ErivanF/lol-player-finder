@@ -7,6 +7,18 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @Summary Update account
+// @Description Update account
+// @Accept json
+// @Produce json
+// @Param id path string true "Account ID"
+// @Param name body string false "New name"
+// @Param password body string false "New password"
+// @Param gameName body string false "New in game name"
+// @Success 200 {object} types.User
+// @Failure 400 {object} appError.AppError
+// @Failure 404 {object} appError.AppError
+// @Router /user/{id} [patch]
 func Update(c *gin.Context) {
 	id := c.Param("id")
 

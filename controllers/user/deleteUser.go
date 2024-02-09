@@ -7,6 +7,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @Summary Delete account
+// @Description Delete one account
+// @Param id path string true "Account ID"
+// @Success 204
+// @Failure 404 {object} appError.AppError
+// @Router /user/{id} [delete]
 func Delete(c *gin.Context) {
 	id := c.Param("id")
 	deleted := userServices.DeleteUserService(id)

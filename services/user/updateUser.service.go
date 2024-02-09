@@ -15,7 +15,7 @@ func UpdateUserService(id string, changes types.UserChanges) (types.User, error)
 	conn := database.GetDb()
 	err := conn.QueryRow(query, id).Scan(&oldUser.Name, &oldUser.Password, &oldUser.GameName)
 	if err != nil {
-		return types.User{}, appError.BadRequestError("Invalid ID or database connection")
+		return types.User{}, appError.NotFoundError("User not found")
 	}
 	if changes.Name != "" {
 		oldUser.Name = changes.Name

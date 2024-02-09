@@ -89,10 +89,26 @@ paths:
             $ref: '#/definitions/appError.AppError'
       summary: Create account
   /user/{id}:
+    delete:
+      description: Delete one account
+      parameters:
+      - description: Account ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/appError.AppError'
+      summary: Delete account
     get:
       description: Get one account
       parameters:
-      - description: Your email
+      - description: Account ID
         in: path
         name: id
         required: true
@@ -105,4 +121,45 @@ paths:
           schema:
             $ref: '#/definitions/types.User'
       summary: Get account
+    patch:
+      consumes:
+      - application/json
+      description: Update account
+      parameters:
+      - description: Account ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: New name
+        in: body
+        name: name
+        schema:
+          type: string
+      - description: New password
+        in: body
+        name: password
+        schema:
+          type: string
+      - description: New in game name
+        in: body
+        name: gameName
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/appError.AppError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/appError.AppError'
+      summary: Update account
 swagger: "2.0"
