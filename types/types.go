@@ -21,5 +21,5 @@ type User struct {
 type UserChanges struct {
 	Name     string `json:"name" sql:"name"`
 	Password string `json:"password" sql:"password" `
-	GameName string `json:"gameName" sql:"gam_name" `
+	GameName string `json:"gameName" sql:"game_name" `
 }
