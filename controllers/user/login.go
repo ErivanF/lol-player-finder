@@ -22,5 +22,10 @@ func Login(c *gin.Context) {
 		c.Error(err)
 		return
 	}
-	c.JSON(200, token)
+	var data struct {
+		Token string `json:"token"`
+	}
+	data.Token = token
+
+	c.JSON(200, data)
 }

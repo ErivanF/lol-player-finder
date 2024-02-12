@@ -1,7 +1,6 @@
 package userServices
 
 import (
-	"fmt"
 	"lol-player-finder/database"
 	appError "lol-player-finder/error"
 	"os"
@@ -24,12 +23,12 @@ func Login(email string, password string) (string, error) {
 	if databaseData.Password != password {
 		return "", appError.BadRequestError("Invalid email or password")
 	}
-	fmt.Println("Senha body:\n", password, "\nSenha db:", databaseData.Password)
-	token := jwt.NewWithClaims(jwt.SigningMethodES256, jwt.MapClaims{
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"id":    databaseData.Id,
 		"email": email,
 	})
 	secret := os.Getenv("JWT_SECRET")
-	tokenString, _ := token.SignedString(secret)
+	tokenString, _ := token.SignedString([]byte(secret))
+
 	return tokenString, nil
 }
