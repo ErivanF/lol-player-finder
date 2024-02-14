@@ -20,6 +20,9 @@ func NotFoundError(m string) error {
 func ConflictError(m string) error {
 	return newAppError(409, m)
 }
+func UnauthorizedError(m string) error {
+	return newAppError(401, m)
+}
 func InternalServerError(m string) error {
 	return newAppError(500, m)
 }

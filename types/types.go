@@ -23,3 +23,7 @@ type UserChanges struct {
 	Password string `json:"password" sql:"password" `
 	GameName string `json:"gameName" sql:"game_name" `
 }
+type UserContext struct {
+	Id    string `json:"id" sql:"id"`
+	Email string `json:"email" sql:"email"`
+}
