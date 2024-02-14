@@ -11,7 +11,13 @@ import (
 )
 
 func IsUserLogged(c *gin.Context) {
-	token := strings.Split(c.Request.Header.Get("Authorization"), " ")[1]
+	auth := c.Request.Header.Get("Authorization")
+	if auth == "" {
+		c.Error(appError.UnauthorizedError("Missing authorization header"))
+		c.Abort()
+		return
+	}
+	token := strings.Split(auth, " ")[1]
 	data, err := jwt.Parse(token, func(t *jwt.Token) (interface{}, error) {
 		if _, ok := t.Method.(*jwt.SigningMethodHMAC); !ok {
 			c.Error(appError.UnauthorizedError("Invalid token"))

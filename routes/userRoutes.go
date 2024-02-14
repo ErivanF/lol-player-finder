@@ -13,6 +13,7 @@ func AddUserRoutes(router *gin.Engine) {
 	users.POST("", userController.Create)
 	users.GET("", middlewares.IsUserLogged, userController.GetAll)
 	users.GET("/:id", middlewares.IsUserLogged, userController.GetUser)
+	users.GET("/profile", middlewares.IsUserLogged, userController.Profile)
 	users.PATCH("/:id", middlewares.IsUserLogged, userController.Update)
 	users.DELETE("/:id", middlewares.IsUserLogged, userController.Delete)
 }
